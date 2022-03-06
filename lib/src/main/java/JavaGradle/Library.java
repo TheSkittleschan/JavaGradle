@@ -14,6 +14,11 @@ public class Library {
 		myString.toLowerCase();
 	}
 	
+	public void changeString() {
+		myString.toUpperCase();
+	}
+	
+	
     public boolean someLibraryMethod() {
         return true;
     }
