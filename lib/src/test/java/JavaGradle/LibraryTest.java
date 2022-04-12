@@ -4,11 +4,136 @@
 package JavaGradle;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
+
 class LibraryTest {
+
+    @BeforeEach
+    public void setUp() {
+	
+    }
+    
     @Test void someLibraryMethodReturnsTrue() {
         Library classUnderTest = new Library("a");
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
     }
+
+    @Test
+    public void updateString_upperCaseString_updatesToLowerCase() {
+        //GIVEN
+        Library myLibrary = new Library("ONE");
+
+        //WHEN
+        myLibrary.updateString();
+
+        //THEN
+        assertEquals("one", myLibrary.getString(), 
+            "Expected Library's string to be lower case");
+    }
+
+    @Test
+    public void changeString_lowerCaseString_updatesToUpperCase() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+
+        //WHEN
+        myLibrary.changeString();
+
+        //THEN
+        assertEquals("ONE", myLibrary.getString(), 
+            "Expected Library's string to be upper case");
+        
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+
+        //WHEN && THEN
+        assertTrue(myLibrary.equals(myLibrary), 
+            "Expected object to be equal to itself");
+    }
+
+    @Test
+    public void equals_differentClass_returnsFalse() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+        Integer myInteger = 0;
+
+        //WHEN && THEN
+        assertFalse(myLibrary.equals(myInteger), 
+            "Expected object not to be equal to Integer");
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+
+        //WHEN && THEN
+        assertFalse(myLibrary.equals(null), 
+            "Expected object to be equal to null");
+    }
+
+    @Test
+    public void equals_objectSameParameters_returnsTrue() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+        Library otherLibrary = new Library("one");
+
+        //WHEN && THEN
+        assertTrue(myLibrary.equals(otherLibrary), 
+            "Expected object with same parameters to be equal");
+
+    }
+
+    @Test
+    public void equals_objectDifferentParameters_returnsFalse() {
+         //GIVEN
+         Library myLibrary = new Library("one");
+         Library otherLibrary = new Library("two");
+
+         //WHEN && THEN
+         assertFalse(myLibrary.equals(otherLibrary), 
+            "Expected object to different from object with different parameters");
+    }
+
+    @Test
+    public void hashCode_objectSameParameters_returnsSameHashCode() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+        Library otherLibrary = new Library("one");
+
+        //WHEN && THEN
+        assertTrue(myLibrary.hashCode() == otherLibrary.hashCode(), 
+            "Expected hashCode for other object with same parameters to be the same");
+    }
+
+    @Test
+    public void hashCode_objectDifferentParameters_returnsDifferentHashCode() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+        Library otherLibrary = new Library("two");   
+        
+        //WHEN && THEN
+        assertFalse(myLibrary.hashCode() == otherLibrary.hashCode(), 
+            "Expected object with different parameters to return different hashCode");
+    }
+
+    @Test
+    public void toString_objectInitialized_returnsString() {
+        //GIVEN
+        Library myLibrary = new Library("one");
+
+        //WHEN && THEN
+        assertEquals("Library [myString=one]", myLibrary.toString(), 
+            "Expected correctly formatted string"); 
+    }
+    
+    
+     
 }
